@@ -10,21 +10,16 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    - task: AzureResourceManagerTemplateDeployment@3
-      inputs:
-        deploymentScope: 'Resource Group'
-        azureResourceManagerConnection: 'Visual Studio Enterprise Subscription'
-        subscriptionId: '50f06750-828f-4b1a-92ce-744c248b52ce'
-        action: 'Create Or Update Resource Group'
-        resourceGroupName: 'AzureRmPipeline-rg'
-        location: 'Central US'
-        templateLocation: 'Linked artifact'
-        csmFile: 'CreateWebApp/azuredeploy.json'
-        overrideParameters: '-projectName ARMPractice -linkedTemplateUri https://raw.githubusercontent.com/gburrows33/AzureRmPipeline-repo/master/CreateWebApp/linkedStorageAccount.json'
-        deploymentMode: 'Incremental'
-        deploymentName: 'DeployPipelineTemplate'
-  displayName: 'Run a multi-line script'
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'Visual Studio Enterprise Subscription'
+    subscriptionId: '50f06750-828f-4b1a-92ce-744c248b52ce'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'AzureRmPipeline-rg'
+    location: 'Central US'
+    templateLocation: 'Linked artifact'
+    csmFile: 'CreateWebApp/azuredeploy.json'
+    overrideParameters: '-projectName ARMPractice -linkedTemplateUri https://raw.githubusercontent.com/gburrows33/AzureRmPipeline-repo/master/CreateWebApp/linkedStorageAccount.json'
+    deploymentMode: 'Incremental'
+    deploymentName: 'DeployPipelineTemplate'
